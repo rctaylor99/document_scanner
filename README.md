@@ -13,5 +13,8 @@ Deciding now on the end hardware to use, though it will likely be one of these o
 
 ## Software
 
-<br>
-<br>
+I want to focus on the following development tools for this project, which will help me deploy to the embedded device:
+
+* Docker
+* OpenCV
+* Google Drive APIs
