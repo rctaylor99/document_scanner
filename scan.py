@@ -84,6 +84,11 @@ def resize_image(image):
     return cv2.resize(image, (resize_width,resize_height))
 
 
+def convert_to_greyscale(image):
+    # Using CV2 to convert the input image to greyscale
+    return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+
 def main():
     # Printing welcome message
     print('===================================')
@@ -93,9 +98,12 @@ def main():
     # Read in new image and resize to work with OpenCV
     original_img = scan_image()
     resized_img = resize_image(original_img)
-    
 
-    cv2.imshow("Image", resized_img)
+    # Convert resized image to greyscale
+    greyscale_img = convert_to_greyscale(resized_img)
+    
+    # USED IN TESTING -- Displaying resized image that will be used with OpenCV
+    cv2.imshow("Image", greyscale_img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
