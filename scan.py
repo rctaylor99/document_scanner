@@ -12,7 +12,7 @@ resize_height = 800
 
 def scan_image():
     # TODO: Update the function to scan, rather than return the test image in the folder 
-    return cv2.imread("test_image.jpg")
+    return cv2.imread("test_img.jpg")
 
 
 def resize_image(image):
