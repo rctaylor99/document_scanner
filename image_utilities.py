@@ -1,13 +1,15 @@
 # Utilities that are useful for vision project, but don't need to be housed in the main file
 
+import cv2
+
 def scan_image():
     # TODO: Update the function to scan, rather than return the test image in the folder 
     return cv2.imread("test_img.jpg")
 
 
-def resize_image(image):
+def resize_image(image, width, height):
     # TODO: Update the image_width and image_height variables to more reasonable values
-    return cv2.resize(image, (resize_width,resize_height))
+    return cv2.resize(image, (width,height))
 
 
 def convert_to_greyscale(image):

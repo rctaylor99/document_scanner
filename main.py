@@ -1,10 +1,6 @@
 # Importing packages
-# from pyimagesearch.transform import four_point_transform
-# from skimage.filters import threshold_local
 import numpy as np
-# import argparse
 import cv2
-# import imutils 
 import image_utilities as utils
 
 # Defining constants
@@ -20,7 +16,7 @@ def main():
 
     # Read in new image and resize to work with OpenCV
     original_img = utils.scan_image()
-    resized_img = utils.resize_image(original_img)
+    resized_img = utils.resize_image(original_img, resize_width, resize_height)
 
     # Convert resized image to greyscale
     greyscale_img = utils.convert_to_greyscale(resized_img)
