@@ -17,6 +17,15 @@ def convert_to_greyscale(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 
+def blur(image, kernel_size, sigma):
+    # Gaussian blur within the CV2 Library
+    return cv2.GaussianBlur(image,(kernel_size, kernel_size), sigma)
+
+
+def edge_detect(image, min, max):
+    # Using Canny method of determining edges on an image
+    return cv2.Canny(image, min, max)
+
 def show_image(image):
     # Show the image to the screen
     # NOTE: Mostly used for testing purposes
