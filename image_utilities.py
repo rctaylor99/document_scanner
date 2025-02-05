@@ -42,10 +42,10 @@ def map_endpoints(image):
 
     return new_image
 
-def show_image(image):
+def show_image(image0):
     # Show the image to the screen
     # NOTE: Mostly used for testing purposes
-    cv2.imshow("Image", image)
+    cv2.imshow("Image", image0)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     return

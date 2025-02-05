@@ -40,7 +40,7 @@ def main():
     # Finding the edges of the image using Canny method
     edges_img = utils.edge_detect(blurred_img, edge_min, edge_max)
 
-    utils.show_image(edges_img)
+    # utils.show_image(edges_img)
 
     # # Finding the corners of the paper, using the contours of the edges we just created
     contours, hierarchy = cv2.findContours(edges_img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
@@ -56,12 +56,12 @@ def main():
     approx = utils.map_endpoints(target) # approximate corners of the sheet
 
     # Re-mapping points to specified size
-    corner_points = np.array(
+    corner_points = np.float32(
         [[base_point,base_point],
         [input_width,base_point],
         [input_width,input_height],
-        [base_point,input_height]], 
-        dtype="float32")
+        [base_point,input_height]]
+        )
 
     approx_x: int = approx[0][0]
     approx_y: int = approx[0][1]
@@ -77,10 +77,11 @@ def main():
     circled_image = cv2.circle(circled_image, (1018, 267), 10, (0, 0, 255), 5)
     circled_image = cv2.circle(circled_image, (1024, 501), 10, (0, 0, 255), 5)
     circled_image = cv2.circle(circled_image, (206, 498), 10, (0, 0, 255), 5)
-    utils.show_image(circled_image)
+    # utils.show_image(circled_image, original_img)
 
     remapped_img = cv2.getPerspectiveTransform(approx, corner_points)
-    final_image = cv2.warpPerspective(original_img, remapped_img, (input_width, input_height))
+    print(remapped_img)
+    final_image = cv2.warpPerspective(resized_img, remapped_img, (input_width, input_height))
 
     # USED IN TESTING -- Displaying resized image that will be used with OpenCV
     utils.show_image(final_image)
