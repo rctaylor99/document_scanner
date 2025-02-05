@@ -40,8 +40,6 @@ def main():
     # Finding the edges of the image using Canny method
     edges_img = utils.edge_detect(blurred_img, edge_min, edge_max)
 
-    # utils.show_image(edges_img)
-
     # # Finding the corners of the paper, using the contours of the edges we just created
     contours, hierarchy = cv2.findContours(edges_img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     contours = sorted(contours, key=cv2.contourArea, reverse=True)
@@ -62,22 +60,6 @@ def main():
         [input_width,input_height],
         [base_point,input_height]]
         )
-
-    approx_x: int = approx[0][0]
-    approx_y: int = approx[0][1]
-
-    print(approx_x)
-    print(approx_y)
-    print('------------')
-    print(approx)
-    print('------------')
-    print(corner_points)
-
-    circled_image = cv2.circle(edges_img, (211, 270), 10, (0, 0, 255), 5)
-    circled_image = cv2.circle(circled_image, (1018, 267), 10, (0, 0, 255), 5)
-    circled_image = cv2.circle(circled_image, (1024, 501), 10, (0, 0, 255), 5)
-    circled_image = cv2.circle(circled_image, (206, 498), 10, (0, 0, 255), 5)
-    # utils.show_image(circled_image, original_img)
 
     remapped_img = cv2.getPerspectiveTransform(approx, corner_points)
     print(remapped_img)
