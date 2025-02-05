@@ -56,7 +56,12 @@ def main():
     approx = utils.map_endpoints(target) # approximate corners of the sheet
 
     # Re-mapping points to specified size
-    corner_points = np.float32([[base_point,base_point], [input_width,base_point], [input_width,input_height], [base_point,input_height]])
+    corner_points = np.array(
+        [[base_point,base_point],
+        [input_width,base_point],
+        [input_width,input_height],
+        [base_point,input_height]], 
+        dtype="float32")
 
     approx_x: int = approx[0][0]
     approx_y: int = approx[0][1]
@@ -68,19 +73,17 @@ def main():
     print('------------')
     print(corner_points)
 
-
-
     circled_image = cv2.circle(edges_img, (211, 270), 10, (0, 0, 255), 5)
     circled_image = cv2.circle(circled_image, (1018, 267), 10, (0, 0, 255), 5)
-    circled_image = cv2.circle(edges_img, (1024, 501), 10, (0, 0, 255), 5)
-    circled_image = cv2.circle(edges_img, (206, 498), 10, (0, 0, 255), 5)
+    circled_image = cv2.circle(circled_image, (1024, 501), 10, (0, 0, 255), 5)
+    circled_image = cv2.circle(circled_image, (206, 498), 10, (0, 0, 255), 5)
     utils.show_image(circled_image)
 
     remapped_img = cv2.getPerspectiveTransform(approx, corner_points)
-    final_image = cv2.warpPerspective(original_img, remapped_img, [input_width, input_height])
+    final_image = cv2.warpPerspective(original_img, remapped_img, (input_width, input_height))
 
     # USED IN TESTING -- Displaying resized image that will be used with OpenCV
-    utils.show_image(remapped_img)
+    utils.show_image(final_image)
 
     return
 
