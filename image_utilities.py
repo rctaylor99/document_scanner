@@ -4,8 +4,24 @@ import cv2
 import numpy as np
 
 def scan_image():
-    # TODO: Update the function to scan, rather than return the test image in the folder 
-    return cv2.imread("test_img2.jpg")
+    # DONE: Update the function to scan, rather than return the test image in the folder 
+    capture = cv2.VideoCapture(0)
+
+    if not capture.isOpened():
+        print("Error: Could not open Webcam")
+        exit()
+
+    # Capture a single frame from the video
+    ret, frame = capture.read()
+
+    # If the frame is captured correctly, save it!
+    if ret: 
+        cv2.imwrite("scanned_image.jpg", frame)
+        print("Image saved as jpg")
+
+    capture.release()
+
+    return cv2.imread("scanned_image.jpg")
 
 
 def resize_image(image, width, height):
