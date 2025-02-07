@@ -2,14 +2,17 @@
 
 import cv2
 import numpy as np
+import time
 
 def scan_image():
     # DONE: Update the function to scan, rather than return the test image in the folder 
-    capture = cv2.VideoCapture(0)
+    capture = cv2.VideoCapture(3)
 
     if not capture.isOpened():
         print("Error: Could not open Webcam")
         exit()
+
+    time.sleep(2)
 
     # Capture a single frame from the video
     ret, frame = capture.read()
@@ -18,6 +21,8 @@ def scan_image():
     if ret: 
         cv2.imwrite("scanned_image.jpg", frame)
         print("Image saved as jpg")
+    else:
+        print("Failed to capture image")
 
     capture.release()
 

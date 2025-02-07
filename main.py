@@ -11,9 +11,9 @@ resize_height = 800
 blur_kernel_size = 5
 blur_sigma = 0
 
-# TODO: Edit these values to ensure best image quality
-edge_min = 100
-edge_max = 150
+# TODO: Edit these values to ensure best image quality -- will need to make a script to see if there's a specific value that is worth it
+edge_min = 80
+edge_max = 100
 
 # TODO: change this based on the size of the paper that is input
 base_point = 0
@@ -28,9 +28,9 @@ def main():
     print('===================================')
 
     # Read in new image and resize to work with OpenCV
-    # original_img = utils.scan_image()
+    original_img = utils.scan_image()
     
-    original_img = cv2.imread("scanned_image.jpg")
+    # original_img = cv2.imread("scanned_image.jpg")
     resized_img = utils.resize_image(original_img, resize_width, resize_height)
 
     # Convert resized image to greyscale
@@ -41,7 +41,7 @@ def main():
 
     # Finding the edges of the image using Canny method
     edges_img = utils.edge_detect(blurred_img, edge_min, edge_max)
-    utils.show_image(edges_img)
+    # utils.show_image(edges_img)
 
     # # Finding the corners of the paper, using the contours of the edges we just created
     contours, hierarchy = cv2.findContours(edges_img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
@@ -71,7 +71,9 @@ def main():
     final_image = cv2.warpPerspective(resized_img, remapped_img, (input_width, input_height))
 
     # USED IN TESTING -- Displaying resized image that will be used with OpenCV
-    utils.show_image(final_image)
+    # utils.show_image(final_image)
+
+    cv2.imwrite("final_img.jpg", final_image)
 
     return
 
