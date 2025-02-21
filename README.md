@@ -4,12 +4,7 @@ Making a document scanner for my desk at home! Ultimate goal is to automatically
 <br>
 ## Hardware
 
-Deciding now on the end hardware to use, though it will likely be one of these options:
-
-* SK-AM62B-P1
-* BeagleBone Black
-* BeagleY-AI
-* Raspberry Pi 4B
+The Hardware platform I ended up using is the BeagleY-AI. This quad-core A53 based SBC provided plenty of horsepower for the level of compute I needed, while still being at a relatively inexpensive price point. 
 
 ## Software
 
