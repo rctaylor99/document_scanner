@@ -28,11 +28,7 @@ def main():
     print('===================================')
 
     # Read in new image and resize to work with OpenCV
-    # original_img = utils.scan_image()
-
-    # using this as test for linux PC platform
-    original_img = cv2.imread("test_img2.jpg")
-
+    original_img = utils.scan_image()
     
     # original_img = cv2.imread("scanned_image.jpg")
     resized_img = utils.resize_image(original_img, resize_width, resize_height)
