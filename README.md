@@ -23,3 +23,9 @@ This command makes a new directory within our project and places a configuration
 `$ source <path_to_project>/virtual/bin/activate`
 Your bash shell should now have a (virtual) in front of the prompt. When this is available, you can install imutils as normal:
 `$ python3 -m pip install imutils`
+
+Other dependencies to install: 
+* Tesseract OCR: 
+`$ sudo apt install tesseract-ocr `
+`$ pip install opencv-python pytesseract numpy`
+

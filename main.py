@@ -2,6 +2,7 @@
 import numpy as np
 import cv2
 import image_utilities as utils
+import pytesseract
 
 # Defining constants
 resize_width = 1200
@@ -28,7 +29,10 @@ def main():
     print('===================================')
 
     # Read in new image and resize to work with OpenCV
-    original_img = utils.scan_image()
+    # original_img = utils.scan_image()
+
+    # To work on Linux host, I use test images: 
+    original_img = cv2.imread("scanned_image.jpg")
     
     # original_img = cv2.imread("scanned_image.jpg")
     resized_img = utils.resize_image(original_img, resize_width, resize_height)
@@ -73,8 +77,13 @@ def main():
     # USED IN TESTING -- Displaying resized image that will be used with OpenCV
     # utils.show_image(final_image)
 
+    # Wriitng final image to jpg
     cv2.imwrite("final_img.jpg", final_image)
 
+    # Trying to read the text off of the image
+    text = pytesseract.image_to_string(final_image)
+    print(text)
+    
     return
 
 
